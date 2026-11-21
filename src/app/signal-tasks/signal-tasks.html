@@ -1,0 +1,37 @@
+<h2>Exercice Angular - Signals et Parent-Enfant</h2>
+
+<p>Nombre total de tâches : {{ all() }}</p>
+
+<p>Tâches non terminées : {{ availableTasks().length }}</p>
+
+<input
+  type="text"
+  placeholder="Nouvelle tâche"
+  [value]="newTitle()"
+  (input)="newTitle.set($any($event.target).value)"
+>
+
+<button (click)="addTask()">Ajouter</button>
+
+<h3>Liste des tâches</h3>
+
+<ul>
+  @for (task of tasks(); track task.id) {
+    <li>
+      <app-task-card
+        [task]="task"
+        (completed)="completeTask($event)">
+      </app-task-card>
+    </li>
+  } @empty {
+    <li>Aucune tâche pour l'instant</li>
+  }
+</ul>
+
+@if (emptyTasks()) {
+  <p>Aucune tâche en attente</p>
+}
+
+<button (click)="clear()">Vider la liste</button>
+
+

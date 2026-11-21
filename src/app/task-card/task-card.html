@@ -1,0 +1,12 @@
+
+<h3>{{ task().title }}</h3>
+
+@if (task().completed) {
+  <p>Terminée</p>
+} @else {
+  <p>À faire</p>
+
+  <button (click)="markDone()">
+    Terminer
+  </button>
+}
